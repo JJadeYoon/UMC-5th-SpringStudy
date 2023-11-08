@@ -3,10 +3,7 @@ package umc.spring.domain;
 import lombok.*;
 import umc.spring.domain.common.BaseEntity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Getter
@@ -19,7 +16,6 @@ public class FoodCategory extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(length = 15)
     private String name;
-
-
 }
