@@ -1,6 +1,7 @@
 package umc.spring.web.dto;
 
 import lombok.Getter;
+import umc.spring.domain.Region;
 
 public class StoreRequestDTO {
 
@@ -13,4 +14,14 @@ public class StoreRequestDTO {
 
         private Float score;
     }
+
+    @Getter
+    public static class AddStoreDTO {
+        private Long region;
+
+        private String name;
+
+        private String address;
+    }
+
 }
