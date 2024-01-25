@@ -1,7 +1,6 @@
 package umc.spring.web.dto;
 
 import lombok.Getter;
-import umc.spring.domain.Region;
 
 public class StoreRequestDTO {
 
@@ -16,7 +15,7 @@ public class StoreRequestDTO {
     }
 
     @Getter
-    public static class AddStoreDTO {
+    public static class StoreDTO {
         private Long region;
 
         private String name;

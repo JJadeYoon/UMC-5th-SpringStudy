@@ -1,6 +1,7 @@
 package umc.spring.converter;
 
 import org.springframework.data.domain.Page;
+import umc.spring.domain.Member;
 import umc.spring.domain.Region;
 import umc.spring.domain.Review;
 import umc.spring.domain.Store;
@@ -13,7 +14,7 @@ import java.util.stream.Collectors;
 
 public class StoreConverter {
 
-    public static Review toReview(StoreRequestDTO.ReviewDTO request) {
+    public static Review toReview(Member member, Store store, StoreRequestDTO.ReviewDTO request) {
         return Review.builder()
                 .title(request.getTitle())
                 .body(request.getBody())
@@ -55,7 +56,7 @@ public class StoreConverter {
                 .build();
     }
 
-    public static Store toStore(StoreRequestDTO.AddStoreDTO request, Region region) {
+    public static Store toStore(StoreRequestDTO.StoreDTO request, Region region) {
 
         return Store.builder()
                 .name(request.getName())
@@ -65,11 +66,18 @@ public class StoreConverter {
                 .build();
     }
 
-    public static StoreResponseDTO.AddStoreDTO toAddStoreDTO(Store store) {
-        return StoreResponseDTO.AddStoreDTO.builder()
+    public static StoreResponseDTO.NewStoreDTO toNewStoreDTO(Store store) {
+        return StoreResponseDTO.NewStoreDTO.builder()
                 .storeName(store.getName())
                 .regionName(store.getRegion().getName())
                 .createdAt(LocalDateTime.now())
+                .build();
+    }
+
+    public static StoreResponseDTO.CreateReviewResultDTO toCreateReviewResultDTO(Review review) {
+        return StoreResponseDTO.CreateReviewResultDTO.builder()
+                .reviewId(review.getId())
+                .createdAt(review.getCreatedAt())
                 .build();
     }
 }
