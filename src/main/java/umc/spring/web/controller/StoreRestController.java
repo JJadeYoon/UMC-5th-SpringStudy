@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import umc.spring.apiPayload.code.ApiResponse;
 import umc.spring.converter.StoreConverter;
+import umc.spring.domain.Review;
 import umc.spring.domain.Store;
 import umc.spring.service.StoreService.StoreCommandService;
 import umc.spring.service.StoreService.StoreQueryService;
@@ -43,15 +44,25 @@ public class StoreRestController {
         return null;
     }
 
-    @PostMapping("/add-store")
+    @PostMapping("/new")
     @Operation(summary = "특정 지역에 가게 추가 API", description = "특정 지역에 새로운 가게를 추가하는 API입니다.")
     @io.swagger.v3.oas.annotations.responses.ApiResponses({
             @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "COMMON200", description = "OK, 성공"),
     })
-    public ApiResponse<StoreResponseDTO.AddStoreDTO> addStore(@RequestBody StoreRequestDTO.AddStoreDTO request) {
+    public ApiResponse<StoreResponseDTO.NewStoreDTO> newStore(@RequestBody StoreRequestDTO.StoreDTO request) {
 
-        Store store = storeCommandService.addStore(request);
+        Store store = storeCommandService.createStore(request);
 
-        return ApiResponse.onSuccess(StoreConverter.toAddStoreDTO(store));
+        return ApiResponse.onSuccess(StoreConverter.toNewStoreDTO(store));
+    }
+
+    @PostMapping("/{storeId}/reviews")
+    public ApiResponse<StoreResponseDTO.CreateReviewResultDTO> newReview(@PathVariable(name = "storeId") Long storeId,
+                                                                         @RequestParam(name = "memberId") Long memberId,
+                                                                         @RequestBody StoreRequestDTO.ReviewDTO request) {
+
+        Review review = storeCommandService.createReview(memberId, storeId, request);
+
+        return ApiResponse.onSuccess(StoreConverter.toCreateReviewResultDTO(review));
     }
 }

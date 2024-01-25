@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import umc.spring.domain.Region;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -49,7 +48,7 @@ public class StoreResponseDTO {
     @Getter
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class AddStoreDTO {
+    public static class NewStoreDTO {
         String storeName;
         String regionName;
         LocalDateTime createdAt;
