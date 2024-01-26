@@ -22,11 +22,11 @@ public class AmazonConfig {
     private String accessKey;
     @Value("${cloud.aws.credentials.secretKey}")
     private String secretKey;
-    @Value(("${cloud.aws.region.static}"))
+    @Value("${cloud.aws.region.static}")
     private String region;
     @Value("${cloud.aws.s3.bucket}")
     private String bucket;
-    @Value("${cloud.aws.s3.path.review")
+    @Value("${cloud.aws.s3.path.review}")
     private String reviewPath;
 
     @PostConstruct
