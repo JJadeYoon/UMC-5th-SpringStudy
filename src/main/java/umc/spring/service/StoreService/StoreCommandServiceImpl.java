@@ -3,6 +3,7 @@ package umc.spring.service.StoreService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import umc.spring.aws.s3.AmazonS3manager;
 import umc.spring.converter.StoreConverter;
 import umc.spring.domain.Member;
 import umc.spring.domain.Region;
@@ -26,6 +27,8 @@ public class StoreCommandServiceImpl implements StoreCommandService {
     private final MemberRepository memberRepository;
 
     private final ReviewRepository reviewRepository;
+
+    private final AmazonS3manager s3manager;
 
     @Override
     @Transactional

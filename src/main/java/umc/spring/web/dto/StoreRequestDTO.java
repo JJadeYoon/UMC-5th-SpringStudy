@@ -1,6 +1,7 @@
 package umc.spring.web.dto;
 
 import lombok.Getter;
+import org.springframework.web.multipart.MultipartFile;
 
 public class StoreRequestDTO {
 
@@ -12,6 +13,8 @@ public class StoreRequestDTO {
         private String body;
 
         private Float score;
+
+        MultipartFile reviewPicture;
     }
 
     @Getter
