@@ -56,10 +56,10 @@ public class StoreRestController {
         return ApiResponse.onSuccess(StoreConverter.toNewStoreDTO(store));
     }
 
-    @PostMapping("/{storeId}/reviews")
-    public ApiResponse<StoreResponseDTO.CreateReviewResultDTO> newReview(@PathVariable(name = "storeId") Long storeId,
-                                                                         @RequestParam(name = "memberId") Long memberId,
-                                                                         @RequestBody StoreRequestDTO.ReviewDTO request) {
+    @PostMapping(value = "/{storeId}/reviews", consumes = "multipart/form-data")
+    public ApiResponse<StoreResponseDTO.CreateReviewResultDTO> createReview(@PathVariable(name = "storeId") Long storeId,
+                                                                            @RequestParam(name = "memberId") Long memberId,
+                                                                            @RequestBody StoreRequestDTO.ReviewDTO request) {
 
         Review review = storeCommandService.createReview(memberId, storeId, request);
 
